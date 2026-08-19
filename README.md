@@ -2,6 +2,16 @@
 
 [Claude Code Playbook](https://docs.claude-hunt.com) 강의의 실습용 저장소입니다. Next.js 와 shadcn/ui 로 시작하는 작은 Todo 앱을 단계별로 발전시키며 Claude Code 사용법을 익힙니다.
 
+"오늘의 할일"이라는 이름의 개인용 할일 관리 앱으로, 할일 추가·완료 체크·검색·정렬·우선순위와 카테고리 분류·다크모드 전환 같은 기능을 제공합니다.
+
+## 주요 기능
+
+- 할일 추가 / 완료 체크 / 삭제
+- 우선순위·카테고리 선택
+- 검색 및 카테고리 필터
+- 정렬(우선순위, 생성일 등)
+- 라이트/다크 테마 토글
+
 ## 관련 링크
 
 - 강의 본문: https://docs.claude-hunt.com
@@ -34,6 +44,8 @@ bun run start      # 빌드 결과 실행
 bun run lint       # ESLint
 bun run typecheck  # tsc --noEmit
 bun run format     # Prettier 포맷팅
+bun run test       # 테스트 실행 (vitest)
+bun run test:watch # 테스트 watch 모드
 ```
 
 ## 챕터별 시작 브랜치
