@@ -5,9 +5,11 @@ import {
   CATEGORIES,
   DEFAULT_PRIORITY,
   PRIORITIES,
+  PRIORITY_META,
   type Category,
   type Priority,
 } from "@/lib/types";
+import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -67,52 +69,75 @@ export function TodoInput({ onAdd }: TodoInputProps) {
             className="w-auto"
           />
 
-          <div role="radiogroup" aria-label="우선순위" className="flex gap-1">
-            {PRIORITIES.map((item) => {
-              const selected = item.value === priority;
-              return (
-                <Button
-                  key={item.value}
-                  type="button"
-                  size="sm"
-                  variant={selected ? "default" : "outline"}
-                  role="radio"
-                  aria-checked={selected}
-                  onClick={() => setPriority(item.value)}
-                >
-                  {item.label}
-                </Button>
-              );
-            })}
+          <div className="flex flex-col gap-1">
+            <span className="text-xs font-medium text-muted-foreground">
+              우선순위
+            </span>
+            <div
+              role="radiogroup"
+              aria-label="우선순위"
+              className="flex gap-1"
+            >
+              {PRIORITIES.map((item) => {
+                const selected = item.value === priority;
+                return (
+                  <Button
+                    key={item.value}
+                    type="button"
+                    size="sm"
+                    variant="outline"
+                    className={cn(selected && item.badgeClass)}
+                    role="radio"
+                    aria-checked={selected}
+                    onClick={() => setPriority(item.value)}
+                  >
+                    {item.label}
+                  </Button>
+                );
+              })}
+            </div>
           </div>
 
-          <div role="radiogroup" aria-label="카테고리" className="flex gap-1">
-            <Button
-              type="button"
-              size="sm"
-              variant={category === undefined ? "default" : "outline"}
-              role="radio"
-              aria-checked={category === undefined}
-              onClick={() => setCategory(undefined)}
+          <div className="flex flex-col gap-1">
+            <span className="text-xs font-medium text-muted-foreground">
+              카테고리
+            </span>
+            <div
+              role="radiogroup"
+              aria-label="카테고리"
+              className="flex gap-1"
             >
-              없음
-            </Button>
-            {CATEGORIES.map((item) => {
-              const selected = item.value === category;
-              return (
-                <Button
-                  key={item.value}
-                  type="button"
-                  size="sm"
-                  variant={selected ? "default" : "outline"}
-                  role="radio"
-                  aria-checked={selected}
-                  onClick={() => setCategory(item.value)}
-                >
-                  {item.label}
-                </Button>
-              );
-            })}
+              <Button
+                type="button"
+                size="sm"
+                variant="outline"
+                className={cn(
+                  category === undefined && PRIORITY_META.low.badgeClass
+                )}
+                role="radio"
+                aria-checked={category === undefined}
+                onClick={() => setCategory(undefined)}
+              >
+                없음
+              </Button>
+              {CATEGORIES.map((item) => {
+                const selected = item.value === category;
+                return (
+                  <Button
+                    key={item.value}
+                    type="button"
+                    size="sm"
+                    variant="outline"
+                    className={cn(selected && item.badgeClass)}
+                    role="radio"
+                    aria-checked={selected}
+                    onClick={() => setCategory(item.value)}
+                  >
+                    {item.label}
+                  </Button>
+                );
+              })}
+            </div>
           </div>
         </CardContent>
 
